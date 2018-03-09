@@ -1,25 +1,28 @@
+require 'pry'
 module Hotel
   class Period
 
-    attr_reader :num_of_night, :start_date, :end_date
+    attr_reader :check_in, :check_out
 
     def initialize(check_in, check_out)
-      @start_date = check_in
-      @end_date = check_out
+      @check_in = check_in
+      @check_out = check_out
     end
 
-    if @end_date != nil
-      if @start_date > @end_date
-        raise ArgumentError.new("Invalid date")
+    def is_valid?
+      if @check_out != nil
+        if @check_out < @check_in || @check_out == @check_in
+          raise ArgumentError.new("Invalid date")
+        end
       end
+   end
+
+    def num_of_nights
+      return check_out - check_in
     end
 
-    def num_of_night
-
-    end
-
-    def include?
-
+    def include?(date)
+      return date >= check_in && date < check_out
     end
 
   end

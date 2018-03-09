@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter "/specs/"
+end
 
 require 'minitest'
 require 'minitest/autorun'
@@ -13,4 +15,4 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 require_relative '../lib/room'
 require_relative '../lib/reservation'
 require_relative '../lib/period'
-require_relative '../lib/front_desk'
+require_relative '../lib/management'

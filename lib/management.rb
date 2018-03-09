@@ -13,7 +13,7 @@ module Hotel
 
     end
 
-    def reserve_room(check_in, check_out)
+    def reserve_room(room, check_in, check_out)
       reservation = Hotel::Reservation.new(room, check_in, check_out)
       @reservations << reservation
       return reservation

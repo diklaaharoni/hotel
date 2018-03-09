@@ -2,6 +2,13 @@ require_relative 'spec_helper'
 
 describe 'Management class' do
   describe 'initialize' do
+    it "can be created" do
+      hotel_management = Hotel::Management.new
+      hotel_management.must_be_instance_of Hotel::Management
+      hotel_management.rooms.must_be_kind_of Array
+      reservations = Hotel::Management.new
+      reservations.must_be_instance_of Hotel::Management
+    end
     it "can access the list of all of the rooms in the hotel" do
       hotel = Hotel::Management.new
       hotel.rooms.length.must_equal 20

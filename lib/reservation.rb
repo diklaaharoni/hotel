@@ -6,7 +6,7 @@ module Hotel
       @room = room
       @dates = Hotel::Period.new(check_in, check_out)
         if !@room.is_available(@dates)
-          raise ArgumentError "This dates are not available"
+          raise ArgumentError.new("This dates are not availabe")
         end
       @room.mark_dates_as_reserved(@dates)
       @total_cost = @dates.num_of_nights * @room.price_per_night

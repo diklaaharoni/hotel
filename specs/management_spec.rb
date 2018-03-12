@@ -18,6 +18,7 @@ describe 'Management class' do
       hotel = Hotel::Management.new
       hotel.rooms.count.must_equal 20
     end
+
   end
   describe 'reserve_room' do
     it 'return reservation' do
@@ -27,6 +28,14 @@ describe 'Management class' do
       reservation = Hotel::Management.new.reserve_room(room, check_in, check_out)
       reservation.dates.check_in.must_equal check_in
       reservation.dates.check_out.must_equal check_out
+    end
+
+    it 'raise an error if room is already reserved' do
+      room = Hotel::Room.new(1)
+      check_in = Date.new(2018, 03, 01)
+      check_out = Date.new(2018, 03, 03)
+      reservation = Hotel::Management.new.reserve_room(room, check_in, check_out)
+      proc{ Hotel::Management.new.reserve_room(room, check_in, check_out)}.must_raise ArgumentError
     end
   end
 

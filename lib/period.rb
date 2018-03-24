@@ -10,11 +10,7 @@ module Hotel
     end
 
     def is_valid?
-      if @check_out != nil
-        if @check_out < @check_in || @check_out == @check_in
-          raise ArgumentError.new("Invalid date")
-        end
-      end
+      (@check_out != nil && @check_in != nil) && !(@check_out <= @check_in) 
    end
 
     def num_of_nights

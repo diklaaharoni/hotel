@@ -30,5 +30,13 @@ describe 'Reservation class' do
 
       # new_dates = Hotel::Period.new(Date.new(2018,03,01), Date.new(2018,03,02))
     end
+
+    it 'raise an error if the date is in_valid' do
+      room = Hotel::Room.new(1)
+      dates = Hotel::Period.new(Date.new(2018,03,01), Date.new(2018,03,01))
+      reservation = Hotel::Reservation.new(room, Date.new(2018,03,01), Date.new(2018,03,03))
+      room.mark_dates_as_reserved(dates)
+      proc{ Hotel::Reservation.new(room, Date.new(2018,03,01), Date.new(2018,03,02))}.must_raise ArgumentError
+    end
   end
 end

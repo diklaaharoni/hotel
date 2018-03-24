@@ -33,13 +33,19 @@ describe 'Period class' do
     it 'cannot have negative number of days' do
       check_in = Date.new(2018, 03, 01)
       check_out = Date.new(2018, 02, 25)
-      proc {Hotel::Period.new(check_in, check_out).is_valid?}.must_raise ArgumentError
+      Hotel::Period.new(check_in, check_out).is_valid?.must_equal false
     end
 
     it 'cannot have 0 days' do
       check_in = Date.new(2018, 03, 01)
       check_out = Date.new(2018, 03, 01)
-      proc {Hotel::Period.new(check_in, check_out).is_valid?}.must_raise ArgumentError
+      Hotel::Period.new(check_in, check_out).is_valid?.must_equal false
+    end
+
+    it 'valid dates' do
+      check_in = Date.new(2018, 03, 01)
+      check_out = Date.new(2018, 03, 03)
+      Hotel::Period.new(check_in, check_out).is_valid?.must_equal true
     end
   end
 
